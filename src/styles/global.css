@@ -1,0 +1,142 @@
+@import './theme.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Cinematic Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+::-webkit-scrollbar-thumb {
+  background: #232332;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--crimson-core);
+}
+
+/* Selection */
+::selection {
+  background: var(--crimson-core);
+  color: #ffffff;
+}
+
+/* Buttons and Inputs reset */
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  transition: all var(--duration-fast) var(--ease-cinematic);
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--crimson-bright);
+  outline-offset: 2px;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-panel-elevated {
+  background: var(--bg-glass-elevated);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(230, 34, 56, 0.12);
+}
+
+/* Metallic Display Type */
+.text-metallic {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--metallic-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+  display: inline-block;
+}
+
+/* Glow effects */
+.glow-crimson {
+  text-shadow: 0 0 25px rgba(230, 34, 56, 0.6), 0 0 50px rgba(230, 34, 56, 0.3);
+}
+
+.glow-ember {
+  text-shadow: 0 0 20px rgba(255, 94, 26, 0.6);
+}
+
+/* Shake feedback animation for password gate */
+@keyframes shake-glitch {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-9px) skewX(-2deg); }
+  40% { transform: translateX(8px) skewX(2deg); }
+  60% { transform: translateX(-6px) skewX(-1deg); }
+  80% { transform: translateX(5px) skewX(1deg); }
+}
+
+.animate-shake {
+  animation: shake-glitch 0.4s ease-in-out;
+}
+
+/* Ember pulse animation */
+@keyframes ember-flicker {
+  0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 15px rgba(255, 94, 26, 0.4)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 30px rgba(230, 34, 56, 0.8)); }
+}
+
+.animate-ember {
+  animation: ember-flicker 4s infinite ease-in-out;
+}
+
+/* Film grain overlay */
+.film-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.035;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Utility to hide visually but keep accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
